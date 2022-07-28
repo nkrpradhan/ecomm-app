@@ -42,7 +42,7 @@ function Products() {
           filter.map((product) => {
             return (
               <>
-                <div className=" card mx-1 my-2 p-4 text-center card-size">
+                <div className="card mx-1 my-2 p-4 text-center card-size">
                   <img
                     src={product.image}
                     alt={product.title}
