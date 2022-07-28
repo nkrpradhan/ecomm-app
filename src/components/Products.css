@@ -1,0 +1,9 @@
+.card-size {
+  max-width: 20rem;
+  height: 30rem;
+}
+
+.card-img-size {
+  max-width: 15rem;
+  height: 20rem;
+}
