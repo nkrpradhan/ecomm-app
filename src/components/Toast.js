@@ -4,9 +4,7 @@ import ToastContainer from "react-bootstrap/ToastContainer";
 
 function CustomToast({ showtoast, position, message }) {
   const [show, setShow] = useState(showtoast);
-  useEffect(() => {
-    setShow(showtoast);
-  }, [showtoast]);
+
   return (
     <>
       <ToastContainer position={position} className="p-3">

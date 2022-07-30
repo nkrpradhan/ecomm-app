@@ -1,7 +1,7 @@
 .cart-grid-container {
   display: grid;
   /* grid-template-columns: 25rem 15rem 1rem 2rem 1rem 3rem; */
-  grid-template-columns: repeat(6, minmax(1rem, 1fr));
+  grid-template-columns: repeat(7, minmax(1rem, 1fr));
   justify-content: center;
   gap: 40px;
 }

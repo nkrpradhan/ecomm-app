@@ -8,8 +8,10 @@ import CustomToast from "./Toast";
 
 function ProductDetails() {
   const [product, setProduct] = useState([]);
+  const [productQty, setProductQty] = useState(1);
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState(false);
+  const [toastMsg, setToastMsg] = useState();
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -33,9 +35,21 @@ function ProductDetails() {
   }, []);
 
   const handleCart = () => {
-    console.log("add cart");
-    dispatch(addCart(product));
-    setToast(true);
+    if (productQty > 0) {
+      dispatch(addCart({ ...product, quantity: productQty }));
+      setToastMsg("Item added to the cart");
+      setToast(true);
+    } else {
+      setToastMsg("Please add the quantity");
+      setToast(true);
+    }
+  };
+
+  const handleQuantity = (e) => {
+    setToast(false);
+    setToastMsg();
+    const quantity = e.target.value;
+    setProductQty(quantity);
   };
 
   const ShowProductDetails = () => {
@@ -58,6 +72,17 @@ function ProductDetails() {
             </p>
             <h3>£{product.price}</h3>
             <p>{product.description}</p>
+            <label>
+              Quantity
+              <input
+                className="mx-4 p-1 w-25 h-50"
+                type="number"
+                min="1"
+                autoFocus="autoFocus"
+                value={productQty}
+                onChange={(e) => handleQuantity(e)}
+              />
+            </label>
             <button className="btn btn-outline-secondary" onClick={handleCart}>
               Add to cart
             </button>
@@ -65,9 +90,10 @@ function ProductDetails() {
               Go to Cart
             </NavLink>
             {toast && (
-              <CustomToast showtoast={toast}
+              <CustomToast
+                showtoast={toast}
                 position="top-end"
-                message="Product is added to the cart."
+                message={toastMsg}
               />
             )}
           </div>
