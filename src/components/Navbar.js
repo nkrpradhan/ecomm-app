@@ -45,9 +45,9 @@ function Navbar() {
               <a href="" className="btn btn-outline-dark mx-1 ">
                 <i className="fa fa-user-plus"></i> Register
               </a>
-              <a href="" className="btn btn-outline-dark mx-1 ">
+              <NavLink to={"../cart"} className="btn btn-outline-dark mx-1 ">
                 <i className="fa fa-shopping-cart"></i> Cart
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

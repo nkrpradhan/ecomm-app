@@ -1,0 +1,16 @@
+.cart-grid-container {
+  display: grid;
+  /* grid-template-columns: 25rem 15rem 1rem 2rem 1rem 3rem; */
+  grid-template-columns: repeat(6, minmax(1rem, 1fr));
+  justify-content: center;
+  gap: 40px;
+}
+.cart-image {
+  max-width: 15rem;
+  max-height: 8rem;
+}
+.cart-btn {
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+  padding: 0.2rem;
+}

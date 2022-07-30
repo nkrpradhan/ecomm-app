@@ -1,13 +1,18 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./ProductDetails.css";
+import { addCart } from "../redux/features/cartSlice";
+import CustomToast from "./Toast";
 
 function ProductDetails() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState(false);
   const { id } = useParams();
-  console.log(id);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const productDetails = async () => {
       try {
@@ -26,6 +31,12 @@ function ProductDetails() {
     };
     productDetails();
   }, []);
+
+  const handleCart = () => {
+    console.log("add cart");
+    dispatch(addCart(product));
+    setToast(true);
+  };
 
   const ShowProductDetails = () => {
     return (
@@ -47,10 +58,18 @@ function ProductDetails() {
             </p>
             <h3>£{product.price}</h3>
             <p>{product.description}</p>
-            <button className="btn btn-outline-secondary">Add to cart</button>
-            <NavLink to="/cart" className="btn btn-dark mx-4">
+            <button className="btn btn-outline-secondary" onClick={handleCart}>
+              Add to cart
+            </button>
+            <NavLink to="../cart" className="btn btn-dark mx-4">
               Go to Cart
             </NavLink>
+            {toast && (
+              <CustomToast showtoast={toast}
+                position="top-end"
+                message="Product is added to the cart."
+              />
+            )}
           </div>
         </div>
       </>
