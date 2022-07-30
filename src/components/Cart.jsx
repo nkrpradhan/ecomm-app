@@ -4,7 +4,7 @@ import {
   incrementCart,
   decrementCart,
   deleteProduct,
-} from "../redux/features/cartSlice";
+} from "../redux/features/cart/cartSlice";
 import "./Cart.css";
 
 function Cart() {

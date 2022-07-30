@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./ProductDetails.css";
-import { addCart } from "../redux/features/cartSlice";
+import { addCart } from "../redux/features/cart/cartSlice";
 import CustomToast from "./Toast";
 
 function ProductDetails() {

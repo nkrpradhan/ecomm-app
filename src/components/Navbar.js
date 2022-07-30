@@ -1,9 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setGlobalUser } from "../redux/features/user/userSlice";
 
 function Navbar() {
   const itemsCart = useSelector((state) => state.addCart.cart.length);
+  const user = useSelector((state) => state.userDetails.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  console.log("navbar--", user, "--typeof--", typeof user);
+
+  const handleLogout = () => {
+    dispatch(setGlobalUser(""));
+    navigate("/");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-white p-2 shadow-sm">
@@ -41,12 +51,30 @@ function Navbar() {
               </li>
             </ul>
             <div className="btn-container">
-              <a href="" className="btn btn-outline-dark mx-1 ">
-                <i className="fa fa-sign-in"></i> Login
-              </a>
-              <a href="" className="btn btn-outline-dark mx-1 ">
-                <i className="fa fa-user-plus"></i> Register
-              </a>
+              {user === "" ? (
+                <>
+                  <NavLink
+                    to={"../login"}
+                    className="btn btn-outline-dark mx-1 "
+                  >
+                    <i className="fa fa-sign-in"></i> Login
+                  </NavLink>
+                  <a href="" className="btn btn-outline-dark mx-1 ">
+                    <i className="fa fa-user-plus"></i> Register
+                  </a>
+                </>
+              ) : (
+                <>
+                  <span>Welcome {user}</span>
+                  <button
+                    className="btn btn-outline-dark mx-1 "
+                    onClick={handleLogout}
+                  >
+                    <i className="fa fa-sign-in"></i> Logout
+                  </button>
+                </>
+              )}
+
               <NavLink to={"../cart"} className="btn btn-outline-dark mx-1 ">
                 <i className="fa fa-shopping-cart"></i> Cart({itemsCart})
               </NavLink>
