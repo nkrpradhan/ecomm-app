@@ -8,7 +8,6 @@ function Navbar() {
   const user = useSelector((state) => state.userDetails.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log("navbar--", user, "--typeof--", typeof user);
 
   const handleLogout = () => {
     dispatch(setGlobalUser(""));
